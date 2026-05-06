@@ -8,17 +8,21 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --warm: #f5e6d0;
-      --cream: #fdf8f2;
-      --caramel: #c8873a;
-      --dark-caramel: #9c5e1e;
-      --brown: #3d2008;
-      --text: #2a1500;
-      --muted: #7a5c3e;
-      --white: #ffffff;
+  :root {
+      /* Azul Suave y Profesional */
+      --warm: #e3f2fd;          /* Azul muy claro para fondos de tarjetas */
+      --cream: #f8fbff;         /* Blanco con un toque azulado (fondo general) */
+      --brown: #1e3a5f;         /* Azul marino profundo (reemplaza al marrón en textos y logos) */
+      --muted: #546e7a;         /* Azul grisáceo para textos secundarios */
+      
+      /* Amarillo Vibrante (Acentos) */
+      --caramel: #ffca28;       /* Amarillo ámbar (para botones y detalles) */
+      --dark-caramel: #fbc02d;  /* Amarillo más oscuro para el efecto hover */
+      
+      /* Básicos */
+      --text: #0d1b2a;          /* Azul casi negro para máxima legibilidad */
+      --white: #ffffff;         /* Blanco puro */
     }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -669,8 +673,8 @@
 <!-- CTA BAND -->
 <div class="cta-band" id="contacto">
   <h2>¿Quieres nuestros productos?</h2>
-  <p>Contáctanos por WhatsApp o síguenos en nuestras redes sociales.</p>
-  <a href="http://wa.me/59175256114" class="btn btn-white">📲 Escribir por WhatsApp</a>
+  <p>Contáctanos por WhatsApp o síguenos en nuestras Redes Sociales.</p>
+  <a href="http://wa.me/59175256114" class="btn btn-white">Escribir por WhatsApp📲</a>
 </div>
 
 <!-- FOOTER -->
@@ -731,7 +735,7 @@
       window.scrollY > 60 ? '.6rem 4vw' : '1rem 4vw';
   });
 
-  // Mobile menu
+  // FUNCION DE CELULAR  TODAVIA EN ETAPA DE PREUBAS 
   function toggleMenu() {
     document.getElementById('mobileMenu').classList.toggle('open');
   }
