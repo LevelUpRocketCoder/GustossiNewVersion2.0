@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gustossi Bolivia – El Sabor del Buen Gusto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --warm: #f5e6d0;
+      --cream: #fdf8f2;
+      --caramel: #c8873a;
+      --dark-caramel: #9c5e1e;
+      --brown: #3d2008;
+      --text: #2a1500;
+      --muted: #7a5c3e;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 4vw;
+      background: rgba(253,248,242,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(200,135,58,0.15);
+      transition: padding .3s;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 900;
+      color: var(--brown);
+      letter-spacing: -0.5px;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--caramel); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--muted);
+      font-size: .9rem; font-weight: 500;
+      letter-spacing: .04em; text-transform: uppercase;
+      transition: color .25s;
+    }
+    .nav-links a:hover { color: var(--caramel); }
+    .nav-cta {
+      background: var(--caramel); color: var(--white) !important;
+      padding: .45rem 1.2rem; border-radius: 100px;
+      transition: background .25s !important;
+    }
+    .nav-cta:hover { background: var(--dark-caramel) !important; color: var(--white) !important; }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--brown); border-radius: 2px; transition: .3s; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid; place-items: center;
+      padding: 8rem 4vw 4rem;
+      background:
+        radial-gradient(ellipse 70% 60% at 80% 40%, rgba(200,135,58,.18) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 10% 80%, rgba(200,135,58,.10) 0%, transparent 60%),
+        var(--cream);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c8873a' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hero-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center; max-width: 1200px; width: 100%;
+    }
+    .hero-text { animation: fadeUp .9s ease both; }
+    .hero-eyebrow {
+      font-size: .8rem; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--caramel); font-weight: 500; margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block;
+      width: 32px; height: 2px; background: var(--caramel);
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 5rem); line-height: 1.08;
+      font-weight: 900; color: var(--brown);
+      margin-bottom: 1.5rem;
+    }
+    h1 em { color: var(--caramel); font-style: italic; }
+    .hero-desc {
+      font-size: 1.05rem; color: var(--muted); line-height: 1.7;
+      max-width: 460px; margin-bottom: 2.5rem;
+    }
+    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .85rem 2rem; border-radius: 100px; font-size: .95rem;
+      font-weight: 500; text-decoration: none; transition: all .25s; cursor: pointer; border: none;
+    }
+    .btn-primary { background: var(--caramel); color: var(--white); }
+    .btn-primary:hover { background: var(--dark-caramel); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,135,58,.35); }
+    .btn-outline { border: 2px solid var(--caramel); color: var(--caramel); background: transparent; }
+    .btn-outline:hover { background: var(--caramel); color: var(--white); transform: translateY(-2px); }
+
+    .hero-visual {
+      position: relative; animation: fadeUp .9s .2s ease both;
+    }
+    .hero-card-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      transform: rotate(2deg);
+    }
+    .hero-card {
+      background: var(--white); border-radius: 20px;
+      overflow: hidden; box-shadow: 0 8px 32px rgba(61,32,8,.12);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .hero-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(61,32,8,.18); }
+    .hero-card:nth-child(2) { margin-top: 2rem; }
+    .hero-card:nth-child(3) { margin-top: -1rem; }
+    .hero-card-img {
+      width: 100%; aspect-ratio: 1;
+      background: linear-gradient(135deg, var(--warm) 0%, #e8c99a 100%);
+      display: grid; place-items: center; font-size: 3rem;
+    }
+    .hero-card-label {
+      padding: .8rem 1rem; font-size: .85rem; font-weight: 500;
+      color: var(--brown);
+    }
+
+    /* ── CATEGORIES ── */
+    .section { padding: 6rem 4vw; }
+    .section-head { text-align: center; margin-bottom: 3.5rem; }
+    .section-head .eyebrow {
+      font-size: .78rem; letter-spacing: .25em; text-transform: uppercase;
+      color: var(--caramel); font-weight: 500; margin-bottom: .8rem;
+    }
+    .section-head h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700; color: var(--brown);
+    }
+    .section-head p { color: var(--muted); margin-top: .6rem; font-size: 1rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+
+    .categories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1200px; margin: 0 auto; }
+    .cat-card {
+      position: relative; border-radius: 24px; overflow: hidden;
+      aspect-ratio: 3/4; cursor: pointer;
+      background: linear-gradient(135deg, var(--warm), #d4a06a);
+      box-shadow: 0 4px 20px rgba(61,32,8,.1);
+      transition: transform .35s, box-shadow .35s;
+    }
+    .cat-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 50px rgba(61,32,8,.2); }
+    .cat-card .emoji { font-size: 5rem; display: grid; place-items: center; height: 55%; }
+    .cat-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(61,32,8,.9) 0%, transparent 100%);
+      padding: 2rem 1.5rem 1.5rem;
+      color: var(--white);
+    }
+    .cat-overlay h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; }
+    .cat-overlay p { font-size: .85rem; opacity: .8; margin-top: .3rem; }
+    .cat-arrow {
+      display: inline-flex; align-items: center; gap: .3rem;
+      font-size: .8rem; font-weight: 500; margin-top: .8rem;
+      color: var(--caramel);
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      background: var(--brown); padding: 1.2rem 0; overflow: hidden;
+    }
+    .marquee-track {
+      display: flex; gap: 3rem; width: max-content;
+      animation: marquee 20s linear infinite;
+    }
+    .marquee-item {
+      display: flex; align-items: center; gap: .8rem;
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 1.1rem; color: var(--warm); white-space: nowrap;
+    }
+    .marquee-dot { width: 6px; height: 6px; background: var(--caramel); border-radius: 50%; }
+
+    /* ── PRODUCTS ── */
+    .products-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .prod-card {
+      background: var(--white); border-radius: 20px;
+      overflow: hidden; box-shadow: 0 2px 16px rgba(61,32,8,.07);
+      transition: transform .3s, box-shadow .3s;
+      cursor: pointer;
+    }
+    .prod-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(61,32,8,.15); }
+    .prod-img {
+      aspect-ratio: 1; background: linear-gradient(135deg, var(--warm) 0%, #ecd4b0 100%);
+      display: grid; place-items: center; font-size: 3.5rem;
+      position: relative; overflow: hidden;
+    }
+    .prod-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.3) 0%, transparent 60%);
+    }
+    .prod-info { padding: 1rem 1.2rem 1.4rem; }
+    .prod-info h4 {
+      font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700;
+      color: var(--brown); margin-bottom: .3rem;
+    }
+    .prod-info p { font-size: .82rem; color: var(--muted); }
+    .prod-tag {
+      display: inline-block; font-size: .7rem; font-weight: 500;
+      letter-spacing: .08em; text-transform: uppercase;
+      background: var(--warm); color: var(--caramel);
+      padding: .2rem .6rem; border-radius: 100px; margin-bottom: .5rem;
+    }
+
+    /* ── REVIEWS ── */
+    .reviews-bg { background: var(--brown); }
+    .reviews-bg .section-head h2, .reviews-bg .section-head .eyebrow { color: var(--warm); }
+    .reviews-bg .section-head p { color: rgba(245,230,208,.6); }
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+      max-width: 900px; margin: 0 auto;
+    }
+    .review-card {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(200,135,58,.25);
+      border-radius: 20px; padding: 2rem;
+      transition: background .3s;
+    }
+    .review-card:hover { background: rgba(255,255,255,.1); }
+    .stars { color: var(--caramel); font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+    .review-text { color: var(--warm); line-height: 1.65; font-size: .95rem; font-style: italic; margin-bottom: 1.5rem; }
+    .review-author { display: flex; align-items: center; gap: .8rem; }
+    .review-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--caramel), var(--dark-caramel));
+      display: grid; place-items: center; font-weight: 700; color: var(--white); font-size: .9rem;
+    }
+    .review-name { font-weight: 500; color: var(--warm); font-size: .9rem; }
+    .review-source { font-size: .78rem; color: var(--caramel); }
+
+    /* ── RECIPES ── */
+    .recipes-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .recipe-card {
+      border-radius: 20px; overflow: hidden;
+      background: var(--white); box-shadow: 0 2px 16px rgba(61,32,8,.08);
+      transition: transform .3s, box-shadow .3s; cursor: pointer;
+    }
+    .recipe-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(61,32,8,.15); }
+    .recipe-img {
+      aspect-ratio: 4/3; background: linear-gradient(135deg, #e8c99a, #c8873a);
+      display: grid; place-items: center; font-size: 4rem;
+    }
+    .recipe-info { padding: 1.3rem 1.5rem 1.6rem; }
+    .recipe-date { font-size: .78rem; color: var(--caramel); font-weight: 500; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .4rem; }
+    .recipe-info h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--brown); line-height: 1.4; }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: linear-gradient(135deg, var(--caramel) 0%, var(--dark-caramel) 100%);
+      padding: 5rem 4vw; text-align: center;
+    }
+    .cta-band h2 {
+      font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--white); margin-bottom: 1rem;
+    }
+    .cta-band p { color: rgba(255,255,255,.8); font-size: 1rem; margin-bottom: 2rem; }
+    .btn-white { background: var(--white); color: var(--caramel); font-weight: 600; }
+    .btn-white:hover { background: var(--cream); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1e0e00; padding: 4rem 4vw 2rem;
+    }
+    .footer-inner {
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+      max-width: 1200px; margin: 0 auto; padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(200,135,58,.2);
+    }
+    .footer-brand .nav-logo { color: var(--warm); font-size: 1.6rem; display: block; margin-bottom: 1rem; }
+    .footer-brand .nav-logo span { color: var(--caramel); }
+    .footer-brand p { color: rgba(245,230,208,.5); font-size: .88rem; line-height: 1.7; max-width: 280px; }
+    .footer-socials { display: flex; gap: .8rem; margin-top: 1.5rem; }
+    .social-link {
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 1px solid rgba(200,135,58,.4); display: grid; place-items: center;
+      color: var(--caramel); text-decoration: none; font-size: .85rem; font-weight: 600;
+      transition: all .25s;
+    }
+    .social-link:hover { background: var(--caramel); color: var(--white); border-color: var(--caramel); }
+    .footer-col h5 {
+      font-family: 'Playfair Display', serif; color: var(--warm);
+      font-size: 1rem; margin-bottom: 1.2rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: .6rem; }
+    .footer-col ul a {
+      text-decoration: none; color: rgba(245,230,208,.5);
+      font-size: .88rem; transition: color .25s;
+    }
+    .footer-col ul a:hover { color: var(--caramel); }
+    .footer-bottom {
+      padding-top: 2rem; text-align: center; max-width: 1200px; margin: 0 auto;
+      color: rgba(245,230,208,.3); font-size: .8rem;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .categories { grid-template-columns: repeat(2, 1fr); }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .recipes-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+    @media (max-width: 580px) {
+      .categories { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .recipes-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+
+    /* mobile nav */
+    .mobile-menu {
+      display: none; flex-direction: column; gap: .5rem;
+      position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
+      background: rgba(253,248,242,.97); backdrop-filter: blur(14px);
+      padding: 1.5rem 4vw;
+      border-bottom: 1px solid rgba(200,135,58,.15);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--brown); font-size: 1rem;
+      font-weight: 500; padding: .6rem 0; border-bottom: 1px solid rgba(200,135,58,.1);
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Gustos<span>si</span></a>
+  <ul class="nav-links">
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#recetas">Recetas</a></li>
+    <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#productos" onclick="toggleMenu()">Productos</a>
+  <a href="#nosotros" onclick="toggleMenu()">Nosotros</a>
+  <a href="#recetas" onclick="toggleMenu()">Recetas</a>
+  <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Industrias Gustossi S.R.L.</div>
+      <h1>El sabor del<br><em>buen gusto</em><br>boliviano</h1>
+      <p class="hero-desc">Galletas, repostería y productos navideños elaborados con los mejores ingredientes. Tradición y sabor desde Bolivia para el mundo.</p>
+      <div class="btn-group">
+        <a href="#productos" class="btn btn-primary">Ver Productos ↓</a>
+        <a href="#nosotros" class="btn btn-outline">Conocernos</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-grid">
+        <div class="hero-card">
+          <div class="hero-card-img">🍪</div>
+          <div class="hero-card-label">Galletería</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-img">🧁</div>
+          <div class="hero-card-label">Repostería</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-img">🎄</div>
+          <div class="hero-card-label">Navideño</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-img">🍰</div>
+          <div class="hero-card-label">Queques</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="marquee-dot"></span>Galletería Artesanal</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Repostería Boliviana</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Panetón Tradicional</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Galletas Wafer</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Galletas Rellenas</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Queques Deliciosos</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Galletería Artesanal</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Repostería Boliviana</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Panetón Tradicional</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Galletas Wafer</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Galletas Rellenas</span>
+    <span class="marquee-item"><span class="marquee-dot"></span>Queques Deliciosos</span>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section" id="productos">
+  <div class="section-head reveal">
+    <div class="eyebrow">Categorías</div>
+    <h2>Nuestras Líneas de Producto</h2>
+    <p>Explora toda nuestra variedad de productos elaborados con amor y tradición.</p>
+  </div>
+  <div class="categories">
+    <div class="cat-card reveal">
+      <div class="emoji">🍪</div>
+      <div class="cat-overlay">
+        <h3>Galletería</h3>
+        <p>Crackers, chips y más</p>
+        <span class="cat-arrow">Ver productos →</span>
+      </div>
+    </div>
+    <div class="cat-card reveal">
+      <div class="emoji">🧁</div>
+      <div class="cat-overlay">
+        <h3>Repostería</h3>
+        <p>Dulces y pasteles finos</p>
+        <span class="cat-arrow">Ver productos →</span>
+      </div>
+    </div>
+    <div class="cat-card reveal">
+      <div class="emoji">🎄</div>
+      <div class="cat-overlay">
+        <h3>Navideño</h3>
+        <p>Panetón, roscas y más</p>
+        <span class="cat-arrow">Ver productos →</span>
+      </div>
+    </div>
+    <div class="cat-card reveal">
+      <div class="emoji">🍫</div>
+      <div class="cat-overlay">
+        <h3>Wafer</h3>
+        <p>Obleas en varios sabores</p>
+        <span class="cat-arrow">Ver productos →</span>
+      </div>
+    </div>
+    <div class="cat-card reveal">
+      <div class="emoji">🍬</div>
+      <div class="cat-overlay">
+        <h3>Rellenas</h3>
+        <p>Galletas rellenas irresistibles</p>
+        <span class="cat-arrow">Ver productos →</span>
+      </div>
+    </div>
+    <div class="cat-card reveal">
+      <div class="emoji">🍰</div>
+      <div class="cat-overlay">
+        <h3>Queques</h3>
+        <p>Esponjosos y deliciosos</p>
+        <span class="cat-arrow">Ver productos →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section" style="background: var(--warm); padding-top: 5rem; padding-bottom: 5rem;">
+  <div class="section-head reveal">
+    <div class="eyebrow">Favoritos</div>
+    <h2>Tus Productos Preferidos</h2>
+    <p>Los más elegidos por nuestros clientes en toda Bolivia.</p>
+  </div>
+  <div class="products-grid">
+    <div class="prod-card reveal">
+      <div class="prod-img">🎁</div>
+      <div class="prod-info">
+        <span class="prod-tag">Navideño</span>
+        <h4>Panetón Tradicional</h4>
+        <p>Sabor clásico de siempre</p>
+      </div>
+    </div>
+    <div class="prod-card reveal">
+      <div class="prod-img">🍫</div>
+      <div class="prod-info">
+        <span class="prod-tag">Navideño</span>
+        <h4>Panetón de Chocolate</h4>
+        <p>Para los amantes del cacao</p>
+      </div>
+    </div>
+    <div class="prod-card reveal">
+      <div class="prod-img">🍩</div>
+      <div class="prod-info">
+        <span class="prod-tag">Navideño</span>
+        <h4>Rosca Navideña</h4>
+        <p>Tradición en cada bocado</p>
+      </div>
+    </div>
+    <div class="prod-card reveal">
+      <div class="prod-img">🌰</div>
+      <div class="prod-info">
+        <span class="prod-tag">Galletería</span>
+        <h4>Galleta Chip Almendra</h4>
+        <p>Crujiente y deliciosa</p>
+      </div>
+    </div>
+    <div class="prod-card reveal">
+      <div class="prod-img">🍪</div>
+      <div class="prod-info">
+        <span class="prod-tag">Galletería</span>
+        <h4>Galleta Chip Chocolate</h4>
+        <p>El favorito de todos</p>
+      </div>
+    </div>
+    <div class="prod-card reveal">
+      <div class="prod-img">🥥</div>
+      <div class="prod-info">
+        <span class="prod-tag">Galletería</span>
+        <h4>Galleta de Coco</h4>
+        <p>Aroma y sabor tropical</p>
+      </div>
+    </div>
+    <div class="prod-card reveal">
+      <div class="prod-img">🥐</div>
+      <div class="prod-info">
+        <span class="prod-tag">Galletería</span>
+        <h4>Galleta de Hojaldre</h4>
+        <p>Ligereza en cada capa</p>
+      </div>
+    </div>
+    <div class="prod-card reveal">
+      <div class="prod-img">🍊</div>
+      <div class="prod-info">
+        <span class="prod-tag">Galletería</span>
+        <h4>Galleta Choco Naranja</h4>
+        <p>Combinación perfecta</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section reviews-bg" id="nosotros">
+  <div class="section-head reveal">
+    <div class="eyebrow" style="color: var(--caramel);">Opiniones</div>
+    <h2>Lo que dicen nuestros clientes</h2>
+    <p style="color: rgba(245,230,208,.6);">La satisfacción de nuestros clientes es nuestra mayor motivación.</p>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Me encantan las deliciosas galletas Cracker. Son las mejores que he probado en Bolivia."</p>
+      <div class="review-author">
+        <div class="review-avatar">IM</div>
+        <div>
+          <div class="review-name">Irene Miranda</div>
+          <div class="review-source">Facebook</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Soy un adicto a las galletas rellenitas. Las compro todas las semanas sin falta."</p>
+      <div class="review-author">
+        <div class="review-avatar">JV</div>
+        <div>
+          <div class="review-name">Juan Velarde</div>
+          <div class="review-source">Facebook</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Quisiera más sabores de las galletas rellenitas, me encantan. ¡Sigan así!"</p>
+      <div class="review-author">
+        <div class="review-avatar">CA</div>
+        <div>
+          <div class="review-name">Cristina Aguilar</div>
+          <div class="review-source">Instagram</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="review-text">"Utilizo las deliciosas galletas crackers integrales en mis preparaciones culinarias. ¡Excelentes!"</p>
+      <div class="review-author">
+        <div class="review-avatar">JP</div>
+        <div>
+          <div class="review-name">Juan Peredo</div>
+          <div class="review-source">Google</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECIPES -->
+<section class="section" id="recetas">
+  <div class="section-head reveal">
+    <div class="eyebrow">Recetas</div>
+    <h2>Prueba estas Delicias</h2>
+    <p>Inspírate con nuestras recetas usando productos Gustossi.</p>
+  </div>
+  <div class="recipes-grid">
+    <div class="recipe-card reveal">
+      <div class="recipe-img">☕</div>
+      <div class="recipe-info">
+        <div class="recipe-date">Nov 12, 2020</div>
+        <h3>Tiramisú con Galletas Cracker</h3>
+      </div>
+    </div>
+    <div class="recipe-card reveal">
+      <div class="recipe-img">🥧</div>
+      <div class="recipe-info">
+        <div class="recipe-date">Nov 12, 2020</div>
+        <h3>Tarta de Crema con Galletas Cracker</h3>
+      </div>
+    </div>
+    <div class="recipe-card reveal">
+      <div class="recipe-img">🥛</div>
+      <div class="recipe-info">
+        <div class="recipe-date">Nov 12, 2020</div>
+        <h3>Leche Frita con Galletas de Agua</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band" id="contacto">
+  <h2>¿Quieres nuestros productos?</h2>
+  <p>Contáctanos por WhatsApp o síguenos en nuestras redes sociales.</p>
+  <a href="http://wa.me/59175256114" class="btn btn-white">📲 Escribir por WhatsApp</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="nav-logo">Gustos<span>si</span></a>
+      <p>Industrias Alimenticias Gustossi S.R.L. — Galletería, Panadería, Repostería, Navidad, Queques, Wafer y Rellenas. El sabor del buen gusto boliviano.</p>
+      <div class="footer-socials">
+        <a href="https://www.facebook.com/GustossiBolivia" class="social-link" target="_blank">f</a>
+        <a href="https://www.instagram.com/gustossibolivia/" class="social-link" target="_blank">ig</a>
+        <a href="http://wa.me/59175256114" class="social-link" target="_blank">wa</a>
+        <a href="https://www.tiktok.com/@gustossibolivia" class="social-link" target="_blank">tt</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Productos</h5>
+      <ul>
+        <li><a href="#">Galletería</a></li>
+        <li><a href="#">Repostería</a></li>
+        <li><a href="#">Navideño</a></li>
+        <li><a href="#">Wafer</a></li>
+        <li><a href="#">Rellenas</a></li>
+        <li><a href="#">Queques</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Empresa</h5>
+      <ul>
+        <li><a href="#">Nosotros</a></li>
+        <li><a href="#">Recetas</a></li>
+        <li><a href="#">Contacto</a></li>
+        <li><a href="http://wa.me/59175256114">WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Gustossi Bolivia – El Sabor del Buen Gusto. Todos los derechos reservados.
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav compact on scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.padding =
+      window.scrollY > 60 ? '.6rem 4vw' : '1rem 4vw';
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+</script>
+</body>
+</html>
