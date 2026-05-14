@@ -1,203 +1,277 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" href="images/icons/favicon.ico">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gustossi Bolivia – El Sabor del Buen Gusto</title>
-  <meta name="description" content="Especialistas en Panadería, galletería y repostería. Somos una empresa de productos alimenticios horneados que inició operaciones en noviembre de 2013." />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <meta name="description" content="Especialistas en galletería, repostería y productos navideños. El sabor del buen gusto boliviano desde 2013."/>
+  <meta name="theme-color" content="#1A4480"/>
+  <link rel="icon" href="images/icons/favicon.ico"/>
+  <!-- Fuentes: solo pesos usados -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,600&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <!-- Font Awesome: carga no-bloqueante -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'"/>
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/></noscript>
+  <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
 
-<!-- ── NAV ── -->
+<!-- ══ PRELOADER ══ -->
+<div id="preloader">
+  <div class="preloader-logo">Gustos<span>si</span></div>
+  <div class="preloader-bar"><div class="preloader-fill"></div></div>
+  <div class="preloader-tagline">El Sabor del Buen Gusto</div>
+</div>
+
+<!-- ══ PROGRESS BAR ══ -->
+<div id="scroll-progress"></div>
+
+
+
+<!-- ══ WHATSAPP FLOTANTE ══ -->
+<a id="wa-float" href="http://wa.me/59175256114" target="_blank" aria-label="Abrir WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- ══ NAV ══ -->
 <nav id="navbar">
   <a href="index.html" class="nav-logo">
-    <!-- Reemplaza con: <img src="images/icons/logo.png" alt="Gustossi" class="nav-logo-img"> -->
-    <i class="fa-solid fa-cookie-bite"></i>
-    Gustos<span>si</span>
+    <img src="images/icons/logo-color.png" class="logo-dark"  alt="Gustossi Bolivia"/>
+    <img src="images/icons/logo-white.png" class="logo-light" alt="Gustossi Bolivia"/>
   </a>
   <ul class="nav-links">
     <li><a href="#productos"><i class="fa-solid fa-grid-2"></i> Productos</a></li>
     <li><a href="#nosotros"><i class="fa-solid fa-star"></i> Nosotros</a></li>
     <li><a href="#recetas"><i class="fa-solid fa-book-open"></i> Recetas</a></li>
-    <li><a href="#contacto" class="nav-cta"><i class="fa-brands fa-whatsapp"></i> Contacto</a></li>
+    <li><a href="http://wa.me/59175256114" class="nav-cta" target="_blank">
+      <i class="fa-brands fa-whatsapp"></i> Contacto</a></li>
   </ul>
-  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
 </nav>
 
-<!-- Menú móvil -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#productos" onclick="toggleMenu()"><i class="fa-solid fa-grid-2"></i> Productos</a>
-  <a href="#nosotros" onclick="toggleMenu()"><i class="fa-solid fa-star"></i> Nosotros</a>
-  <a href="#recetas" onclick="toggleMenu()"><i class="fa-solid fa-book-open"></i> Recetas</a>
-  <a href="#contacto" onclick="toggleMenu()"><i class="fa-brands fa-whatsapp"></i> Contacto</a>
+  <a href="#productos" onclick="closeMobile()"><i class="fa-solid fa-grid-2"></i> Productos</a>
+  <a href="#nosotros"  onclick="closeMobile()"><i class="fa-solid fa-star"></i> Nosotros</a>
+  <a href="#recetas"   onclick="closeMobile()"><i class="fa-solid fa-book-open"></i> Recetas</a>
+  <a href="http://wa.me/59175256114" target="_blank" onclick="closeMobile()">
+    <i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
 </div>
 
-<!-- ── HERO ── -->
-<section class="hero" id="inicio">
-  <div class="hero-inner">
-    <div class="hero-text">
-      <div class="hero-eyebrow">
-        <i class="fa-solid fa-location-dot"></i>
-        Industrias Gustossi S.R.L. · Bolivia
-      </div>
-      <h1>El sabor del<br><em>buen gusto</em><br>boliviano</h1>
-      <p class="hero-desc">Galletas, repostería y productos navideños elaborados con los mejores ingredientes. Tradición y sabor desde Bolivia para el mundo.</p>
-      <div class="btn-group">
-        <a href="#productos" class="btn btn-primary">
-          <i class="fa-solid fa-grid-2"></i> Ver Productos
-        </a>
-        <a href="#nosotros" class="btn btn-outline">
-          <i class="fa-solid fa-circle-info"></i> Conocernos
-        </a>
-      </div>
-    </div>
+<!-- ══ HERO FULLSCREEN SLIDER ══ -->
+<section class="hero-fs" id="inicio">
+  <!-- Slides -->
+  <div class="hero-fs-track" id="hero-fs-track"></div>
 
-    <!-- Slider hero -->
-    <div class="hero-visual">
-      <div class="hero-slider">
-        <div id="hero-slides"></div>
-        <button class="hero-prev" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
-        <button class="hero-next" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
-      </div>
-      <div id="hero-dots" class="hero-dots"></div>
-    </div>
+  <!-- Overlay gradiente -->
+  <div class="hero-fs-overlay"></div>
+
+  <!-- Contenido superpuesto -->
+  <div class="hero-fs-content">
+    <div class="hero-fs-brand" id="hfs-brand">Gustossi</div>
+    <h2 class="hero-fs-cat"   id="hfs-cat">Galletería</h2>
+    <p class="hero-fs-sub"    id="hfs-sub">Las más ricas galletas de Bolivia</p>
+    <a href="#productos" class="hero-fs-btn" id="hfs-btn">
+      Ver Productos <i class="fa-solid fa-arrow-right"></i>
+    </a>
   </div>
+
+  <!-- Dots + flechas -->
+  <div class="hero-fs-dots"  id="hero-fs-dots"></div>
+  <button class="hero-fs-arrow left"  onclick="prevSlide()">
+    <i class="fa-solid fa-chevron-left"></i></button>
+  <button class="hero-fs-arrow right" onclick="nextSlide()">
+    <i class="fa-solid fa-chevron-right"></i></button>
+
+  <!-- Scroll hint -->
+  <div class="scroll-hint">
+    <i class="fa-solid fa-chevron-down"></i>
+    <span>Scroll</span>
+  </div>
+
+  <!-- Mascota decorativa -->
+  <img
+    src="images/icons/mascota.png"
+    alt="Mascota Gustossi"
+    class="hero-mascota"
+    loading="eager"
+    draggable="false"
+  />
 </section>
 
-<!-- ── MARQUEE ── -->
-<div class="marquee-wrap">
+<!-- ══ MARQUEE ══ -->
+<div class="marquee-wrap" aria-hidden="true">
   <div class="marquee-track">
-    <span class="marquee-item"><i class="fa-solid fa-cookie-bite"></i> Galletería Artesanal</span>
-    <span class="marquee-item"><i class="fa-solid fa-star"></i> Repostería Boliviana</span>
-    <span class="marquee-item"><i class="fa-solid fa-gifts"></i> Panetón Tradicional</span>
-    <span class="marquee-item"><i class="fa-solid fa-layer-group"></i> Galletas Wafer</span>
-    <span class="marquee-item"><i class="fa-solid fa-heart"></i> Galletas Rellenas</span>
-    <span class="marquee-item"><i class="fa-solid fa-cake-candles"></i> Queques Deliciosos</span>
-    <span class="marquee-item"><i class="fa-solid fa-cookie-bite"></i> Galletería Artesanal</span>
-    <span class="marquee-item"><i class="fa-solid fa-star"></i> Repostería Boliviana</span>
-    <span class="marquee-item"><i class="fa-solid fa-gifts"></i> Panetón Tradicional</span>
-    <span class="marquee-item"><i class="fa-solid fa-layer-group"></i> Galletas Wafer</span>
-    <span class="marquee-item"><i class="fa-solid fa-heart"></i> Galletas Rellenas</span>
-    <span class="marquee-item"><i class="fa-solid fa-cake-candles"></i> Queques Deliciosos</span>
+    <span class="marquee-item">Galletería Artesanal<span class="m-dot"></span></span>
+    <span class="marquee-item">Repostería Boliviana<span class="m-dot"></span></span>
+    <span class="marquee-item">Panetón Tradicional<span class="m-dot"></span></span>
+    <span class="marquee-item">Galletas Wafer<span class="m-dot"></span></span>
+    <span class="marquee-item">Galletas Rellenas<span class="m-dot"></span></span>
+    <span class="marquee-item">Queques Deliciosos<span class="m-dot"></span></span>
+    <span class="marquee-item">El Sabor del Buen Gusto<span class="m-dot"></span></span>
+    <span class="marquee-item">Galletería Artesanal<span class="m-dot"></span></span>
+    <span class="marquee-item">Repostería Boliviana<span class="m-dot"></span></span>
+    <span class="marquee-item">Panetón Tradicional<span class="m-dot"></span></span>
+    <span class="marquee-item">Galletas Wafer<span class="m-dot"></span></span>
+    <span class="marquee-item">Galletas Rellenas<span class="m-dot"></span></span>
+    <span class="marquee-item">Queques Deliciosos<span class="m-dot"></span></span>
+    <span class="marquee-item">El Sabor del Buen Gusto<span class="m-dot"></span></span>
   </div>
 </div>
 
-<!-- ── CATEGORÍAS ── -->
+<!-- ══ CATEGORÍAS ══ -->
 <section class="section" id="productos">
-  <div class="section-head reveal">
-    <div class="eyebrow"><i class="fa-solid fa-grid-2"></i> Categorías</div>
-    <h2>Nuestras Líneas de Producto</h2>
-    <p>Explora toda nuestra variedad de productos elaborados con amor y tradición boliviana.</p>
+  <div class="sec-head sec-head-row reveal">
+    <div>
+      <div class="label-tag"><i class="fa-solid fa-grid-2"></i> Líneas de Producto</div>
+      <h2 class="sec-title">Nuestra <em>colección</em><br>completa</h2>
+    </div>
+    <p class="sec-sub">Cada línea elaborada con ingredientes seleccionados y el amor que caracteriza a Gustossi Bolivia.</p>
   </div>
-  <div id="categorias-grid" class="categories"></div>
+  <div id="cats-grid" class="cats-grid"></div>
 </section>
 
-<!-- ── PRODUCTOS FAVORITOS ── -->
-<section class="section" style="background: var(--warm); padding-top: 5rem; padding-bottom: 5rem;">
-  <div class="section-head reveal">
-    <div class="eyebrow"><i class="fa-solid fa-fire"></i> Favoritos</div>
-    <h2>Tus Productos Preferidos</h2>
-    <p>Los más elegidos por nuestros clientes en toda Bolivia.</p>
+<!-- ══ PRODUCTOS DESTACADOS ══ -->
+<section class="section section-alt">
+  <div class="sec-head sec-head-row reveal">
+    <div>
+      <div class="label-tag"><i class="fa-solid fa-fire"></i> Más Vendidos</div>
+      <h2 class="sec-title">Los <em>favoritos</em><br>de Bolivia</h2>
+    </div>
+    <div class="prods-filters" id="prods-filters"></div>
   </div>
-  <div id="productos-grid" class="products-grid"></div>
+  <div id="prods-grid" class="prods-grid"></div>
 </section>
 
-<!-- ── STATS ── -->
-<div class="stats-band">
-  <div id="stats-grid" class="stats-grid"></div>
+<!-- ══ STATS ══ -->
+<div class="section" style="padding-top:2.5rem;padding-bottom:2.5rem;">
+  <div id="stats-row" class="stats-row"></div>
 </div>
 
-<!-- ── REVIEWS ── -->
-<section class="section reviews-bg" id="nosotros">
-  <div class="section-head reveal">
-    <div class="eyebrow" style="color:#F0C4B0;"><i class="fa-solid fa-comments"></i> Opiniones</div>
-    <h2>Lo que dicen nuestros clientes</h2>
-    <p style="color:rgba(245,230,208,.6);">La satisfacción de nuestros clientes es nuestra mayor motivación.</p>
+<!-- ══ HISTORIA ══ -->
+<section class="historia-section" id="nosotros">
+  <div class="historia-inner">
+    <div class="historia-left reveal">
+      <div class="label-tag" style="color:rgba(200,168,75,.8);" ><i class="fa-solid fa-landmark"></i> Nuestra Historia</div>
+      <h2 class="historia-title">Desde Bolivia,<br><em>con pasión</em></h2>
+      <p class="historia-desc">Industrias Alimenticias Gustossi nació con una sola misión: llevar el sabor boliviano auténtico a cada hogar. Hoy somos referentes de la galletería y repostería nacional.</p>
+      <div class="historia-fundada">
+        <div class="historia-fundada-year">2001</div>
+        <div class="historia-fundada-txt">Año de<br>fundación</div>
+      </div>
+    </div>
+    <div class="historia-right">
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2001</div>
+          <div class="tl-title">Fundación de Gustossi</div>
+          <div class="tl-desc">Inicio de Industrias Alimenticias Gustossi S.R.L. en Bolivia con las primeras líneas de galletería.</div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2008</div>
+          <div class="tl-title">Expansión nacional</div>
+          <div class="tl-desc">Llegamos a más de 200 puntos de venta en todo el territorio boliviano.</div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2013</div>
+          <div class="tl-title">Línea Navideña</div>
+          <div class="tl-desc">Lanzamiento del Panetón Gustossi, que se convirtió en ícono de las fiestas bolivianas.</div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-year">2020</div>
+          <div class="tl-title">500+ Puntos de Venta</div>
+          <div class="tl-desc">Consolidación como la marca líder de galletería artesanal en Bolivia.</div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-dot"></div>
+          <div class="tl-year">Hoy</div>
+          <div class="tl-title">Más de 30 productos</div>
+          <div class="tl-desc">Innovación constante con nuevas líneas y sabores para toda la familia boliviana.</div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div id="reviews-grid" class="reviews-grid"></div>
 </section>
 
-<!-- ── RECETAS ── -->
+<!-- ══ REVIEWS ══ -->
+<section class="section reviews-minimal" id="testimonios">
+  <div class="rev-min-label reveal">Testimonios</div>
+  <div id="reviews-grid" class="reviews-grid-min"></div>
+</section>
+
+<!-- ══ RECETAS ══ -->
 <section class="section" id="recetas">
-  <div class="section-head reveal">
-    <div class="eyebrow"><i class="fa-solid fa-book-open"></i> Recetas</div>
-    <h2>Prueba estas Delicias</h2>
-    <p>Inspírate con nuestras recetas usando productos Gustossi.</p>
+  <div class="sec-head sec-head-row reveal">
+    <div>
+      <div class="label-tag"><i class="fa-solid fa-book-open"></i> Recetas</div>
+      <h2 class="sec-title">Inspírate con<br><em>nuestras delicias</em></h2>
+    </div>
+    <a href="#" class="btn btn-ghost" style="align-self:flex-end;">
+      Ver todas <i class="fa-solid fa-arrow-right"></i></a>
   </div>
-  <div id="recetas-grid" class="recipes-grid"></div>
+  <div id="recipes-grid" class="recipes-grid"></div>
 </section>
 
-<!-- ── CTA ── -->
-<div class="cta-band" id="contacto">
-  <h2>¿Quieres nuestros productos?</h2>
-  <p>Contáctanos por WhatsApp o síguenos en nuestras redes sociales.</p>
+<!-- ══ CTA ══ -->
+  <div class="cta-band">
+  <div class="cta-eyebrow"><i class="fa-brands fa-whatsapp"></i> Contacto directo</div>
+  <h2>¿Quieres nuestros <em>productos?</em></h2>
+  <p>Contáctanos por WhatsApp para pedidos al por mayor, distribuidores y tiendas en toda Bolivia.</p>
   <div class="cta-btns">
-    <a href="http://wa.me/59175256114" class="btn btn-white" target="_blank">
-      <i class="fa-brands fa-whatsapp"></i> Escribir por WhatsApp
-    </a>
-    <a href="https://www.facebook.com/GustossiBolivia" class="btn btn-outline-white" target="_blank">
-      <i class="fa-brands fa-facebook"></i> Facebook
-    </a>
+    <a href="http://wa.me/59175256114" class="btn btn-white" target="_blank" rel="noopener">
+      <i class="fa-brands fa-whatsapp"></i> Escribir por WhatsApp</a>
+    <a href="https://www.facebook.com/GustossiBolivia" class="btn btn-wht-ghost" target="_blank" rel="noopener">
+      <i class="fa-brands fa-facebook"></i> Facebook</a>
   </div>
 </div>
 
-<!-- ── FOOTER ── -->
+<!-- ══ FOOTER ══ -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <!-- Reemplaza con: <img src="images/icons/logo-white.png" alt="Gustossi" class="footer-logo-img"> -->
-      <a href="index.html" class="nav-logo" style="color:#F5E6D0; margin-bottom:1rem; display:flex;">
-        <i class="fa-solid fa-cookie-bite" style="color:var(--brand);"></i> Gustos<span>si</span>
-      </a>
-      <p>Industrias Alimenticias Gustossi S.R.L. — Galletería, Panadería, Repostería, Navidad, Queques, Wafer y Rellenas. El sabor del buen gusto boliviano.</p>
+  <div class="footer-grid">
+    <div>
+      <img src="images/icons/logo-white.png" alt="Gustossi Bolivia" class="footer-logo-img" loading="lazy" width="120" height="42"/>
+      <div class="footer-brand-name">Gustos<span>si</span> Bolivia</div>
+      <p class="footer-tagline">Industrias Alimenticias Gustossi S.R.L. — Galletería, Panadería, Repostería y más. El sabor del buen gusto boliviano.</p>
       <div class="footer-socials">
-        <a href="https://www.facebook.com/GustossiBolivia" class="social-link" target="_blank" title="Facebook">
-          <i class="fa-brands fa-facebook-f"></i>
-        </a>
-        <a href="https://www.instagram.com/gustossibolivia/" class="social-link" target="_blank" title="Instagram">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
-        <a href="http://wa.me/59175256114" class="social-link" target="_blank" title="WhatsApp">
-          <i class="fa-brands fa-whatsapp"></i>
-        </a>
-        <a href="https://www.tiktok.com/@gustossibolivia" class="social-link" target="_blank" title="TikTok">
-          <i class="fa-brands fa-tiktok"></i>
-        </a>
+        <a href="http://wa.me/59175256114" class="soc-btn" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="https://www.facebook.com/GustossiBolivia" class="soc-btn" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/gustossibolivia/" class="soc-btn" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@gustossibolivia" class="soc-btn" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
       </div>
     </div>
     <div class="footer-col">
-      <h5><i class="fa-solid fa-grid-2"></i> Productos</h5>
-      <ul>
-        <li><a href="pages/galleteria.html"><i class="fa-solid fa-chevron-right"></i> Galletería</a></li>
-        <li><a href="pages/reposteria.html"><i class="fa-solid fa-chevron-right"></i> Repostería</a></li>
-        <li><a href="pages/navideno.html"><i class="fa-solid fa-chevron-right"></i> Navideño</a></li>
-        <li><a href="pages/wafer.html"><i class="fa-solid fa-chevron-right"></i> Wafer</a></li>
-        <li><a href="pages/rellenas.html"><i class="fa-solid fa-chevron-right"></i> Rellenas</a></li>
-        <li><a href="pages/queques.html"><i class="fa-solid fa-chevron-right"></i> Queques</a></li>
-      </ul>
+      <h6>Productos</h6>
+      <ul id="footer-cats-list"></ul>
     </div>
     <div class="footer-col">
-      <h5><i class="fa-solid fa-building"></i> Empresa</h5>
+      <h6>Empresa</h6>
       <ul>
         <li><a href="#nosotros"><i class="fa-solid fa-chevron-right"></i> Nosotros</a></li>
         <li><a href="#recetas"><i class="fa-solid fa-chevron-right"></i> Recetas</a></li>
-        <li><a href="#contacto"><i class="fa-solid fa-chevron-right"></i> Contacto</a></li>
+        <li><a href="#productos"><i class="fa-solid fa-chevron-right"></i> Productos</a></li>
         <li><a href="http://wa.me/59175256114" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
       </ul>
     </div>
+    <div class="footer-col footer-contact">
+      <h6>Contacto</h6>
+      <p>¿Tienes preguntas? Escríbenos directamente por WhatsApp.</p>
+      <a href="http://wa.me/59175256114" class="wa-btn" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i> Abrir WhatsApp</a>
+    </div>
   </div>
   <div class="footer-bottom">
-    <i class="fa-solid fa-cookie-bite"></i>
-    © 2026 Gustossi Bolivia – El Sabor del Buen Gusto. Todos los derechos reservados.
+    <span>© 2026 Gustossi Bolivia – El Sabor del Buen Gusto. Todos los derechos reservados.</span>
+    <span>Industrias Alimenticias Gustossi S.R.L. · Bolivia</span>
   </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="js/categorias-data.js" defer></script>
+<script src="js/main.js" defer></script>
 </body>
 </html>
